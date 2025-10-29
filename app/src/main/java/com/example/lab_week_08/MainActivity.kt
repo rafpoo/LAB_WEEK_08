@@ -1,9 +1,13 @@
 package com.example.lab_week_08
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.work.Constraints
@@ -26,6 +30,12 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
         }
 
         // Create constraints the worker is bound to
@@ -70,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             .observe(this) { info ->
                 if (info.state.isFinished) {
                     showResult("Second process is done")
+                    launchNotificationService()
                 }
             }
     }
@@ -83,5 +94,21 @@ class MainActivity : AppCompatActivity() {
     // show result as a toast
     private fun showResult(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun launchNotificationService() {
+        NotificationService.trackingCompletion.observe(this) { Id ->
+            showResult("Process for Notification Channel Id $Id is done!")
+        }
+
+        val serviceIntent = Intent(this, NotificationService::class.java).apply {
+            putExtra(EXTRA_ID, "001")
+        }
+
+        ContextCompat.startForegroundService(this, serviceIntent)
+    }
+
+    companion object {
+        const val EXTRA_ID = "Id"
     }
 }
