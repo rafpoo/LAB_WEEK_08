@@ -10,7 +10,7 @@ Foto Aplikasi: <br />
 <img width="425" height="950" alt="image" src="https://github.com/user-attachments/assets/3d1e29d6-1522-4f47-8475-e09579b467d8" /><br />
 <img width="428" height="938" alt="image" src="https://github.com/user-attachments/assets/2ee9abe6-c668-4d5e-bf7f-d65247d87e83" /><br />
 <img width="428" height="938" alt="image" src="https://github.com/user-attachments/assets/9c8b6a3b-835d-4f5c-b6a8-e1c373df323a" /><br />
-![Uploading image.png…]()<br />
+<img width="420" height="948" alt="image" src="https://github.com/user-attachments/assets/736394f4-c0a7-44c7-b466-3e80473ff604" /><br />
 
 
 
