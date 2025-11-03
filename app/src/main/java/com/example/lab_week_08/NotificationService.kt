@@ -139,10 +139,10 @@ class NotificationService : Service() {
 
             // stops the foreground service, which closes the notification
             // but the service still goes on
-            stopForeground(STOP_FOREGROUND_REMOVE)
-
-            // stop and destroy the service
-            stopSelf()
+//            stopForeground(STOP_FOREGROUND_REMOVE)
+//
+//            // stop and destroy the service
+//            stopSelf()
         }
 
         return returnValue
